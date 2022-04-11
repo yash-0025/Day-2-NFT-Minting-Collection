@@ -158,7 +158,7 @@ const renderButton = () => {
     <div>
       <Head>
       <title>PUNKS NFT</title>
-      <meta name="description" content="LW3Punks-Dapp" />
+      <meta name="description" content="Punks-Dapp" />
       <link rel="icon" href="/favicon.ico" />
       </Head>
         <div className={styles.main}>
@@ -173,7 +173,7 @@ const renderButton = () => {
         {renderButton()}
         </div>
         <div>
-        <img src="../public/Punks/1.png" alt="" className={styles.image} />
+        <img src="https://res.cloudinary.com/krotcloud/image/upload/v1649697393/1_yoxpcj.png" alt="" className={styles.image} />
         </div>
         </div>
         <footer className={styles.footer}>Made with &#10084; by @YashPatel </footer>
