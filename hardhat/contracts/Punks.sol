@@ -3,7 +3,7 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@opnzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
 
@@ -22,7 +22,7 @@ contract Punks is ERC721Enumerable, Ownable {
 
 
     modifier onlyWhenNotPaused() {
-        require(!paused, "Contract currently Paused.");
+        require(!_paused, "Contract currently Paused.");
         _;
     }
 
@@ -38,7 +38,7 @@ contract Punks is ERC721Enumerable, Ownable {
         _safeMint(msg.sender, tokenIds);
     }
 
-    function _baseUri() internal view virtual override returns(string memory) {
+    function _baseURI() internal view virtual override returns(string memory) {
         return _baseTokenURI;
     }
 
@@ -47,11 +47,11 @@ contract Punks is ERC721Enumerable, Ownable {
            _exists(tokenId),"ERC721Metada: URI query for nonexistent token"
        );
 
-       string memory baseURI = _baseUri();
-       return bytes(baseURI).length > 0
+       string memory baseURI = _baseURI();
+       return
+             bytes(baseURI).length > 0
        ? string(abi.encodePacked(baseURI, tokenId.toString(), ".json"))
        : "";
-       
     }
 
     function setPaused(bool val) public onlyOwner {
@@ -61,7 +61,7 @@ contract Punks is ERC721Enumerable, Ownable {
     function withdraw() public onlyOwner {
         address _owner = owner();
         uint256 amount = address(this).balance;
-        (bool sent, ) = _onwer.call{value: amount}("");
+        (bool sent, ) = _owner.call{value: amount}("");
         require(sent , "Failed to send Ether");
     }
 
